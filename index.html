@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kawaii >.<</title>
+    <title>Nyahh~</title>
     <style>
         * {
             margin: 0;
@@ -26,13 +26,15 @@
 
         #video-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: blur(3px);
-            opacity: 0.3;
+            filter: blur(3px) brightness(0.5);
             z-index: -1;
         }
 
@@ -88,7 +90,7 @@
 </head>
 <body>
     <video id="video-bg" autoplay muted loop playsinline>
-        <source src="https://files.catbox.moe/ew683o.mp4" type="video/mp4">
+        <source src="https://cdn.pixabay.com/video/2023/11/10/187746-883080026_large.mp4" type="video/mp4">
     </video>
 
     <img src="logo.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px; display: block;">
@@ -99,39 +101,39 @@
     <div id="clientsList"></div>
 
     <p style="margin-top: 60px; opacity: 0.6; font-size: 0.85em;">
-    
+        background video by <a href="https://pixabay.com/users/soheyl_j-37119387/" target="_blank">Soheyl_j</a> from <a href="https://pixabay.com/" target="_blank">Pixabay</a>
     </p>
 
     <script>
         const clients = [
             {
-                name: "Liquidbounce",
-                version: "Nextgen",
-                downloadLink: "https://liquidbounce.net/"
-            },
-            {
-                name: "Meteor Client",
-                version: "v0.5.7",
+                name: "null",
+                version: "null",
                 downloadLink: "#"
             },
             {
-                name: "LiquidBounce",
-                version: "b93",
+                name: "null",
+                version: "null",
                 downloadLink: "#"
             },
             {
-                name: "Aristois",
-                version: "v2.15",
+                name: "null",
+                version: "null",
                 downloadLink: "#"
             },
             {
-                name: "Impact",
-                version: "4.11",
+                name: "null",
+                version: "null",
                 downloadLink: "#"
             },
             {
-                name: "Sigma",
-                version: "v5.0",
+                name: "null",
+                version: "null",
+                downloadLink: "#"
+            },
+            {
+                name: "null",
+                version: "null",
                 downloadLink: "#"
             }
         ];
