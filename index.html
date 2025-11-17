@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawaii >.<</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 40px;
+            }
+        }
+
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        .subtitle {
+            margin-bottom: 30px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 768px) {
+            .subtitle {
+                margin-bottom: 40px;
+                font-size: 1em;
+            }
+        }
+
+        .client {
+            margin-bottom: 30px;
+        }
+
+        .client-name {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .client-version {
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        a {
+            color: #6c9bd2;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #8ab4e5;
+        }
+    </style>
+</head>
+<body>
+    <video id="video-bg" autoplay muted loop playsinline>
+        <source src="https://cdn.pixabay.com/video/2023/11/10/187746-883080026_large.mp4" type="video/mp4">
+    </video>
+
+    <img src="logo.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px; display: block;">
+    
+    <h1>minecraft client archive</h1>
+    <p class="subtitle">utility clients</p>
+
+    <div id="clientsList"></div>
+
+    <p style="margin-top: 60px; opacity: 0.6; font-size: 0.85em;">
+        background video by <a href="https://pixabay.com/users/soheyl_j-37119387/" target="_blank">Soheyl_j</a> from <a href="https://pixabay.com/" target="_blank">Pixabay</a>
+    </p>
+
+    <script>
+        const clients = [
+            {
+                name: "Wurst",
+                version: "v7.45",
+                downloadLink: "#"
+            },
+            {
+                name: "Meteor Client",
+                version: "v0.5.7",
+                downloadLink: "#"
+            },
+            {
+                name: "LiquidBounce",
+                version: "b93",
+                downloadLink: "#"
+            },
+            {
+                name: "Aristois",
+                version: "v2.15",
+                downloadLink: "#"
+            },
+            {
+                name: "Impact",
+                version: "4.11",
+                downloadLink: "#"
+            },
+            {
+                name: "Sigma",
+                version: "v5.0",
+                downloadLink: "#"
+            }
+        ];
+
+        const list = document.getElementById('clientsList');
+
+        clients.forEach(client => {
+            const div = document.createElement('div');
+            div.className = 'client';
+            div.innerHTML = `
+                <div class="client-name">${client.name}</div>
+                <div class="client-version">${client.version}</div>
+                <a href="${client.downloadLink}" download>download</a>
+            `;
+            list.appendChild(div);
+        });
+    </script>
+</body>
+</html>
