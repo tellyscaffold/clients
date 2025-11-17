@@ -10,20 +10,17 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Courier New', monospace;
             color: #fff;
             min-height: 100vh;
             padding: 20px;
         }
-
         @media (min-width: 768px) {
             body {
                 padding: 40px;
             }
         }
-
         #video-bg {
             position: fixed;
             top: 50%;
@@ -37,52 +34,45 @@
             filter: blur(3px) brightness(0.5);
             z-index: -1;
         }
-
-        h1 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            font-weight: normal;
-        }
-
-        @media (min-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-        }
-
-        .subtitle {
-            margin-bottom: 30px;
-            opacity: 0.8;
-            font-size: 0.9em;
-        }
-
-        @media (min-width: 768px) {
-            .subtitle {
-                margin-bottom: 40px;
-                font-size: 1em;
-            }
-        }
-
         .client {
             margin-bottom: 30px;
         }
-
         .client-name {
             font-size: 1.2em;
             margin-bottom: 5px;
-            color: #000;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, 
+                #0000ff, #4b0082, #9400d3, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s linear infinite;
+            font-weight: bold;
         }
-
         .client-version {
             margin-bottom: 5px;
-            color: #000;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, 
+                #0000ff, #4b0082, #9400d3, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s linear infinite;
         }
-
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%;
+            }
+        }
         a {
             color: #6c9bd2;
             text-decoration: underline;
         }
-
         a:hover {
             color: #8ab4e5;
         }
@@ -92,18 +82,12 @@
     <video id="video-bg" autoplay muted loop playsinline>
         <source src="video.mp4" type="video/mp4">
     </video>
-
     <img src="logo.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px; display: block;">
     
-    <h1>minecraft client archive</h1>
-    <p class="subtitle">utility clients</p>
-
     <div id="clientsList"></div>
-
     <p style="margin-top: 60px; opacity: 0.6; font-size: 0.85em;">
         
     </p>
-
     <script>
         const clients = [
             {
@@ -137,9 +121,7 @@
                 downloadLink: "#"
             }
         ];
-
         const list = document.getElementById('clientsList');
-
         clients.forEach(client => {
             const div = document.createElement('div');
             div.className = 'client';
