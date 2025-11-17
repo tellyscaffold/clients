@@ -76,9 +76,78 @@
         a:hover {
             color: #8ab4e5;
         }
+        #menuBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        #menuBtn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        #menuOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 80px 20px 20px;
+        }
+        #menuOverlay.active {
+            display: block;
+        }
+        #imageGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .menu-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 768px) {
+            #menuBtn {
+                width: 45px;
+                height: 45px;
+                top: 15px;
+                right: 15px;
+            }
+            #imageGrid {
+                grid-template-columns: 1fr;
+            }
+            #menuOverlay {
+                padding: 70px 15px 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button id="menuBtn">☰</button>
+    <div id="menuOverlay">
+        <div id="imageGrid"></div>
+    </div>
+    
     <video id="video-bg" autoplay muted loop playsinline>
         <source src="video.mp4" type="video/mp4">
     </video>
@@ -89,6 +158,46 @@
         
     </p>
     <script>
+        const imageUrls = [
+            'https://picsum.photos/400/300?random=1',
+            'https://picsum.photos/400/300?random=2',
+            'https://picsum.photos/400/300?random=3',
+            'https://picsum.photos/400/300?random=4',
+            'https://picsum.photos/400/300?random=5',
+            'https://picsum.photos/400/300?random=6'
+        ];
+        
+        const menuBtn = document.getElementById('menuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const imageGrid = document.getElementById('imageGrid');
+        
+        menuBtn.addEventListener('click', () => {
+            const isActive = menuOverlay.classList.contains('active');
+            
+            if (isActive) {
+                menuOverlay.classList.remove('active');
+                imageGrid.innerHTML = '';
+                menuBtn.textContent = '☰';
+            } else {
+                menuOverlay.classList.add('active');
+                menuBtn.textContent = '✕';
+                imageUrls.forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.className = 'menu-image';
+                    imageGrid.appendChild(img);
+                });
+            }
+        });
+        
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('active');
+                imageGrid.innerHTML = '';
+                menuBtn.textContent = '☰';
+            }
+        });
+        
         const clients = [
             {
                 name: "Spoonsense",
