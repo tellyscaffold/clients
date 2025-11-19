@@ -1,241 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nyah~</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Courier New', monospace;
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        @media (min-width: 768px) {
-            body {
-                padding: 40px;
-            }
-        }
-        #video-bg {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            filter: blur(3px) brightness(0.5);
-            z-index: -1;
-        }
-        .client {
-            margin-bottom: 30px;
-        }
-        .client-name {
-            font-size: 1.2em;
-            margin-bottom: 5px;
-            background: linear-gradient(90deg, 
-                #ff0000, #ff7f00, #ffff00, #00ff00, 
-                #0000ff, #4b0082, #9400d3, #ff0000);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: rainbow 3s linear infinite;
-            font-weight: bold;
-        }
-        .client-version {
-            margin-bottom: 5px;
-            background: linear-gradient(90deg, 
-                #ff0000, #ff7f00, #ffff00, #00ff00, 
-                #0000ff, #4b0082, #9400d3, #ff0000);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: rainbow 3s linear infinite;
-        }
-        @keyframes rainbow {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 200% 50%;
-            }
-        }
-        a {
-            color: #6c9bd2;
-            text-decoration: underline;
-        }
-        a:hover {
-            color: #8ab4e5;
-        }
-        #menuBtn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-        #menuBtn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-        #menuOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            display: none;
-            overflow-y: auto;
-            padding: 80px 20px 20px;
-        }
-        #menuOverlay.active {
-            display: block;
-        }
-        #imageGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .menu-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        @media (max-width: 768px) {
-            #menuBtn {
-                width: 45px;
-                height: 45px;
-                top: 15px;
-                right: 15px;
-            }
-            #imageGrid {
-                grid-template-columns: 1fr;
-            }
-            #menuOverlay {
-                padding: 70px 15px 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nyah~</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Courier New',monospace;color:#fff;min-height:100vh;padding:20px;}
+@media(min-width:768px){body{padding:40px;}}
+#video-bg{position:fixed;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;filter:blur(3px) brightness(0.5);z-index:-1;}
+.client{margin-bottom:30px;}
+.client-name{font-size:1.2em;margin-bottom:5px;background:linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3,#ff0000);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:rainbow 3s linear infinite;font-weight:bold;}
+.client-version{margin-bottom:5px;background:linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3,#ff0000);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:rainbow 3s linear infinite;}
+@keyframes rainbow{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+a{color:#6c9bd2;text-decoration:underline;}
+a:hover{color:#8ab4e5;}
+#menuBtn{position:fixed;top:20px;right:20px;width:50px;height:50px;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);border-radius:8px;cursor:pointer;z-index:1001;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;transition:0.3s;}
+#menuBtn:hover{background:rgba(255,255,255,0.2);transform:scale(1.05);}
+#menuOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;display:none;overflow-y:auto;padding:80px 20px 20px;}
+#menuOverlay.active{display:block;}
+#imageGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1200px;margin:0 auto;}
+.menu-image{width:100%;height:auto;border-radius:8px;border:2px solid rgba(255,255,255,0.2);}
+@media(max-width:768px){#menuBtn{width:45px;height:45px;top:15px;right:15px;}#imageGrid{grid-template-columns:1fr;}#menuOverlay{padding:70px 15px 15px;}}
+
+#ageModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:2000;display:none;align-items:center;justify-content:center;}
+#ageBox{background:#111;border:2px solid #fff;padding:25px;width:260px;text-align:center;border-radius:10px;}
+#ageBox h2{margin-bottom:20px;font-size:1.2em;}
+#ageBox button{width:80px;margin:8px;padding:10px;background:#222;color:white;border:1px solid #444;cursor:pointer;border-radius:6px;transition:0.2s;}
+#ageBox button:hover{background:#333;}
+
+.rainbow-edge{position:fixed;background:linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3,#ff0000);background-size:300% 300%;animation:rainbowMove 3s linear infinite;z-index:2001;pointer-events:none;}
+#rb-top,#rb-bottom{height:3px;width:100%;left:0;}
+#rb-top{top:0;}
+#rb-bottom{bottom:0;}
+#rb-left,#rb-right{width:3px;height:100%;top:0;}
+#rb-left{left:0;}
+#rb-right{right:0;}
+@keyframes rainbowMove{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+</style>
 </head>
 <body>
-    <button id="menuBtn">☰</button>
-    <div id="menuOverlay">
-        <div id="imageGrid"></div>
+
+<div id="rb-top" class="rainbow-edge"></div>
+<div id="rb-bottom" class="rainbow-edge"></div>
+<div id="rb-left" class="rainbow-edge"></div>
+<div id="rb-right" class="rainbow-edge"></div>
+
+<div id="ageModal">
+    <div id="ageBox">
+        <h2>Are you 18 or older?</h2>
+        <button id="ageYes">Yes</button>
+        <button id="ageNo">No</button>
     </div>
-    
-    <video id="video-bg" autoplay muted loop playsinline>
-        <source src="video.mp4" type="video/mp4">
-    </video>
-    <img src="logo.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px; display: block;">
-    
-    <div id="clientsList"></div>
-    <p style="margin-top: 60px; opacity: 0.6; font-size: 0.85em;">
-        
-    </p>
-    <script>
-        const imageUrls = [
-            'https://files.catbox.moe/d87ow4.jpeg',
-            'https://files.catbox.moe/to0sye.jpeg',
-            'https://files.catbox.moe/06tq4b.jpeg',
-            'https://files.catbox.moe/hhc3ue.jpeg',
-            'https://files.catbox.moe/q475qk.jpeg',
-            'https://files.catbox.moe/tab9wo.jpeg',
-            'https://files.catbox.moe/6w4a55.jpeg',
-            'https://files.catbox.moe/rz5sro.jpeg',
-            'https://files.catbox.moe/yx2lt1.jpeg',
-            'https://files.catbox.moe/tvb0pi.jpeg',
-            'https://files.catbox.moe/482odq.jpeg',
-            'https://files.catbox.moe/5rej65.jpeg',
-            'https://files.catbox.moe/c2s1xi.jpeg',
-            'https://files.catbox.moe/6tbu7m.jpeg'
-            
-        ];
-        
-        const menuBtn = document.getElementById('menuBtn');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const imageGrid = document.getElementById('imageGrid');
-        
-        menuBtn.addEventListener('click', () => {
-            const isActive = menuOverlay.classList.contains('active');
-            
-            if (isActive) {
-                menuOverlay.classList.remove('active');
-                imageGrid.innerHTML = '';
-                menuBtn.textContent = '☰';
-            } else {
-                menuOverlay.classList.add('active');
-                menuBtn.textContent = '✕';
-                imageUrls.forEach(url => {
-                    const img = document.createElement('img');
-                    img.src = url;
-                    img.className = 'menu-image';
-                    imageGrid.appendChild(img);
-                });
-            }
-        });
-        
-        menuOverlay.addEventListener('click', (e) => {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('active');
-                imageGrid.innerHTML = '';
-                menuBtn.textContent = '☰';
-            }
-        });
-        
-        const clients = [
-            {
-                name: "Spoonsense",
-                version: "Latest",
-                downloadLink: "https://github.com/SpoonClient/Spoon"
-            
-            },
-            {
-                name: "Floyd V",
-                version: "Latest",
-                downloadLink: "https://github.com/clpzware/ModernFloyd"
-            },
-            {
-                name: "Ambient",
-                version: " Idk probs 3",
-                downloadLink: "https://github.com/ImLegiitXD/Ambient"
-            }
-        ];
-        const list = document.getElementById('clientsList');
-        clients.forEach(client => {
-            const div = document.createElement('div');
-            div.className = 'client';
-            div.innerHTML = `
-                <div class="client-name">${client.name}</div>
-                <div class="client-version">${client.version}</div>
-                <a href="${client.downloadLink}" download>download</a>
-            `;
-            list.appendChild(div);
-        });
-    </script>
+</div>
+
+<button id="menuBtn">☰</button>
+<div id="menuOverlay"><div id="imageGrid"></div></div>
+
+<video id="video-bg" autoplay muted loop playsinline>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<img src="logo.png" style="max-width:200px;margin-bottom:20px;display:block;">
+
+<div id="clientsList"></div>
+
+<script>
+const imageUrls=[
+'https://files.catbox.moe/d87ow4.jpeg',
+'https://files.catbox.moe/to0sye.jpeg',
+'https://files.catbox.moe/06tq4b.jpeg',
+'https://files.catbox.moe/hhc3ue.jpeg',
+'https://files.catbox.moe/q475qk.jpeg',
+'https://files.catbox.moe/tab9wo.jpeg',
+'https://files.catbox.moe/6w4a55.jpeg',
+'https://files.catbox.moe/rz5sro.jpeg',
+'https://files.catbox.moe/yx2lt1.jpeg',
+'https://files.catbox.moe/tvb0pi.jpeg',
+'https://files.catbox.moe/482odq.jpeg',
+'https://files.catbox.moe/5rej65.jpeg',
+'https://files.catbox.moe/c2s1xi.jpeg',
+'https://files.catbox.moe/6tbu7m.jpeg'
+];
+
+const menuBtn=document.getElementById('menuBtn');
+const menuOverlay=document.getElementById('menuOverlay');
+const imageGrid=document.getElementById('imageGrid');
+const ageModal=document.getElementById('ageModal');
+const ageYes=document.getElementById('ageYes');
+const ageNo=document.getElementById('ageNo');
+
+menuBtn.addEventListener('click',()=>{
+if(sessionStorage.getItem('ageConfirmed')==='true'){openMenu();}
+else{ageModal.style.display='flex';}
+});
+
+ageYes.addEventListener('click',()=>{
+sessionStorage.setItem('ageConfirmed','true');
+ageModal.style.display='none';
+openMenu();
+});
+
+ageNo.addEventListener('click',()=>{
+ageModal.style.display='none';
+});
+
+function openMenu(){
+const isActive=menuOverlay.classList.contains('active');
+if(isActive){
+menuOverlay.classList.remove('active');
+imageGrid.innerHTML='';
+menuBtn.textContent='☰';
+}else{
+menuOverlay.classList.add('active');
+menuBtn.textContent='✕';
+imageUrls.forEach(url=>{
+const img=document.createElement('img');
+img.src=url;
+img.className='menu-image';
+imageGrid.appendChild(img);
+});
+}
+}
+
+menuOverlay.addEventListener('click',e=>{
+if(e.target===menuOverlay){
+menuOverlay.classList.remove('active');
+imageGrid.innerHTML='';
+menuBtn.textContent='☰';
+}
+});
+
+const clients=[
+{name:"Spoonsense",version:"Latest",downloadLink:"https://github.com/SpoonClient/Spoon"},
+{name:"Floyd V",version:"Latest",downloadLink:"https://github.com/clpzware/ModernFloyd"},
+{name:"Ambient",version:" Idk probs 3",downloadLink:"https://github.com/ImLegiitXD/Ambient"}
+];
+
+const list=document.getElementById('clientsList');
+clients.forEach(client=>{
+const div=document.createElement('div');
+div.className='client';
+div.innerHTML=`<div class="client-name">${client.name}</div><div class="client-version">${client.version}</div><a href="${client.downloadLink}" download>download</a>`;
+list.appendChild(div);
+});
+</script>
+
 </body>
 </html>
